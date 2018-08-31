@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+}
+
+.of-cont-spin {
+    margin: 0 auto;
+    display: table;
+    padding-bottom: 20px;
+}
+
+.of-full-width {
+    width: 100%;
+}
+
+mat-card.of-form {
+    max-width: 35%;
+    margin: 2em auto;
+    text-align: center;
+}
+
+@media only screen and (max-width: 700px) {
+    mat-card.of-form {
+        max-width: 80%;
+    }
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.image-cover {
+    background-size: cover;
+    background-image: url('/assets/img/invoice.png');
+}
