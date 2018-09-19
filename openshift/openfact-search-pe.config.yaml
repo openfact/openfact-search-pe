@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openfact-search-pe
+type: Opaque
+data:
+  proxy.pass.url: "https://192.168.1.6:8443"
+  openfact.api.url: "http://openfactv2-openfact-inpath.apps.console.sistcoop.org:83/api"
