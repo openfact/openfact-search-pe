@@ -9,7 +9,7 @@
 <mat-card *ngIf="document">
   <mat-card-header>
       <div mat-card-avatar class="image-cover"></div>
-    <mat-card-title>{{document.documentType}} <span [hidden]="document.enabled" style="color: red">(Anulado)</span></mat-card-title>
+    <mat-card-title>{{document.documentType}} <span><b>({{document.status}})</b></span></mat-card-title>
     <mat-card-subtitle>{{document.documentId}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>

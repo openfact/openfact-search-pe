@@ -2,6 +2,7 @@ import { MatSnackBar } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../core/data/data.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'of-document-view',
@@ -23,12 +24,14 @@ export class DocumentViewComponent implements OnInit {
       if (params['organizationId'] != null && params['documentId'] != null) {
         organizationId = params['organizationId'];
         documentId = params['documentId'];
-        this.dataService.documents().getDocument(organizationId, documentId).subscribe(response => {
-          this.document = response;
-        }, er => {
-          this.message('No se encontro resultados.');
-
-        }).add(() => { });
+        this.dataService.documents().getDocument(organizationId, documentId)
+          .subscribe((observable: Observable<any>[]) => {
+            observable.forEach(response => {
+              response.subscribe(r => (this.document = r));
+            });
+          }, er => {
+            this.message('No se encontro resultados.');
+          }).add(() => { });
       }
     });
   }

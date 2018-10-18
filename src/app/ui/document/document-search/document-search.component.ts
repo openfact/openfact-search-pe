@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar, DateAdapter } from '@angular/material';
 import { DataService } from '../../../core/data/data.service';
+import { of, Observable } from 'rxjs';
 
 @Component({
   selector: 'of-document-search',
@@ -61,8 +62,10 @@ export class DocumentSearchComponent implements OnInit {
     }
     this.loading = true;
     this.dataService.documents().getInfo(this.form.value)
-      .subscribe(r => {
-        this.router.navigate(['./view', r.organizationAssignedAccountId, r.id], { relativeTo: this.route });
+      .subscribe((observable: Observable<any>[]) => {
+        observable.forEach(response => {
+          response.subscribe(r => this.router.navigate(['./view', r.organizationAssignedAccountId, r.id], { relativeTo: this.route }));
+        });
       }, er => this.message('No se encontro resultados.'))
       .add(() => this.loading = false);
   }
